@@ -30,15 +30,16 @@ Verify python3 app works:
 
 ```console
 $ docker exec -it --env NAME=$USER rules_docker_issue /usr/local/bin/bazel run //:hello_name_py
-INFO: Analyzed target //:hello_name_py (4 packages loaded, 126 targets configured).
+INFO: Analyzed target //:hello_name_py (0 packages loaded, 0 targets configured).
 INFO: Found 1 target...
 Target //:hello_name_py up-to-date:
   bazel-bin/hello_name_py
-INFO: Elapsed time: 1.712s, Critical Path: 0.01s
-INFO: 4 processes: 4 internal.
-INFO: Build completed successfully, 4 total actions
-INFO: Build completed successfully, 4 total actions
-/usr/bin/env: 'python': No such file or directory
+INFO: Elapsed time: 0.271s, Critical Path: 0.00s
+INFO: 1 process: 1 internal.
+INFO: Build completed successfully, 1 total action
+INFO: Build completed successfully, 1 total action
+hello kris from python 3.8.10 (default, Sep 28 2021, 16:10:42) 
+[GCC 9.3.0]
 ```
 
 See that python3 image does not work:
