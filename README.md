@@ -42,18 +42,17 @@ hello kris from python 3.8.10 (default, Sep 28 2021, 16:10:42)
 [GCC 9.3.0]
 ```
 
-See that python3 image does not work:
+Verify python3 image works:
 
 ```console
-$ docker exec -it --env NAME=$USER rules_docker_issue /usr/local/bin/bazel run //:hello_name_py_image
-ERROR: While resolving toolchains for target //:hello_name_py_image.binary: No matching toolchains found for types @bazel_tools//tools/cpp:toolchain_type. Maybe --incompatible_use_cc_configure_from_rules_cc has been flipped and there is no default C++ toolchain added in the WORKSPACE file? See https://github.com/bazelbuild/bazel/issues/10134 for details and migration instructions.
-ERROR: Analysis of target '//:hello_name_py_image' failed; build aborted: No matching toolchains found for types @bazel_tools//tools/cpp:toolchain_type. Maybe --incompatible_use_cc_configure_from_rules_cc has been flipped and there is no default C++ toolchain added in the WORKSPACE file? See https://github.com/bazelbuild/bazel/issues/10134 for details and migration instructions.
-INFO: Elapsed time: 0.200s
-INFO: 0 processes.
-FAILED: Build did NOT complete successfully (2 packages loaded, 0 targets configured)
-FAILED: Build did NOT complete successfully (2 packages loaded, 0 targets configured)
-    Fetching @com_github_google_go_containerregistry; Restarting.
-    Fetching @com_github_pkg_errors; Restarting.
+$ docker exec -it --env NAME=$USER rules_docker_issue /usr/local/bin/bazel build //:hello_name_py_image
+INFO: Analyzed target //:hello_name_py_image (0 packages loaded, 0 targets configured).
+INFO: Found 1 target...
+Target //:hello_name_py_image up-to-date:
+  bazel-bin/hello_name_py_image-layer.tar
+INFO: Elapsed time: 0.314s, Critical Path: 0.00s
+INFO: 1 process: 1 internal.
+INFO: Build completed successfully, 1 total action
 ```
 
 Run this to clean up:

@@ -30,17 +30,24 @@ http_archive(
     strip_prefix = "rules_docker-0.21.0",
     urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.21.0/rules_docker-v0.21.0.tar.gz"],
 )
+
 load(
     "@io_bazel_rules_docker//repositories:repositories.bzl",
     container_repositories = "repositories",
 )
 container_repositories()
+
+load("@io_bazel_rules_docker//python3:image.bzl", _py_image_repos = "repositories")
+_py_image_repos()
+
 load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
 container_deps()
+
 load(
     "@io_bazel_rules_docker//container:container.bzl",
     "container_pull",
 )
+
 container_pull(
     name = "alpine_linux_amd64_tar",
     digest = "sha256:3eea5acfa729637baeedf1059a2a03d5a29356aac6baf65fea08762afa72321b",
